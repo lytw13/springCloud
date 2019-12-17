@@ -1,0 +1,101 @@
+spring:
+  profiles:
+    active: dev
+--- 
+server:
+  port: 7001
+
+spring: 
+  profiles: dev
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_demo_sys?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 连接池的配置信息
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      filters: stat,wall,slf4j
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis/mybatis.xml
+
+
+
+info:
+  name: lytw13
+  web: lytw13.top
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    instance-id: user01
+    ip-address: true
+
+logging:
+  level:
+    com:
+      lytw13:
+        microservice:
+          dao: debug
+---
+server:
+  port: 7002
+
+spring: 
+  profiles: test
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_demo_sys?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 连接池的配置信息
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      filters: stat,wall,slf4j
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis/mybatis.xml
+
+
+
+info:
+  name: lytw13
+  web: lytw13.top
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    instance-id: user02
+    ip-address: true
+
+logging:
+  level:
+    com:
+      lytw13:
+        microservice:
+          dao: debug
